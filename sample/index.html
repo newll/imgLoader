@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>SAMPLE</title>
+  <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript" src="js/imgLoader.js"></script>
+  <script>
+
+    var option = {
+      //Load Error ReloadCount
+      MaxErrorCount:100,
+      complete:function(e){
+
+        //Image
+        $("body").append(e.target);
+
+        //Image Width & Height
+        console.log(e.target.width());
+        console.log(e.target.height());
+        console.log(e.width());
+        console.log(e.height());
+
+        //Image Load Complete Flg
+        console.log(e.getImgComplete());
+      }
+    }
+
+    var _img01 = new ImgLoader("./img/ph01.jpg",option);
+    _img01.load();
+
+  </script>
+</head>
+<body>
+</body>
+</html>
