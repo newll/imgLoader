@@ -4,10 +4,11 @@ var ImgLoader = (function(){
         var imgURL = _src;
         var ImgCompleteFlg=false;
         var errorCount = 0;
-        var MaxErrorCount = _obj._errCount||10;
+        var MaxErrorCount = _obj.MaxErrorCount||10;
         var width=0;
         var height=0;
         var complete = _obj.complete||function(){return false;};
+        var ErrorHD = _obj.errorHD||function(){return false;};
 
         this.load = function(){
             var _img = new Image();
@@ -23,7 +24,12 @@ var ImgLoader = (function(){
             });
             $(_img).error(function(){
                 errorCount++;
-                (MaxErrorCount<errorCount)?function(){return false}():THIS.load();
+                console.log(errorCount,MaxErrorCount)
+                if(MaxErrorCount<errorCount){
+                    ErrorHD(THIS)
+                }else{
+                    THIS.load()
+                };
             });
             _img.src = imgURL+ "?" + new Date().getTime();
         }
