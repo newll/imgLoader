@@ -24,7 +24,6 @@ var ImgLoader = (function(){
             });
             $(_img).error(function(){
                 errorCount++;
-                console.log(errorCount,MaxErrorCount)
                 if(MaxErrorCount<errorCount){
                     ErrorHD(THIS)
                 }else{
